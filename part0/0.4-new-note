@@ -1,0 +1,11 @@
+browser UI: INPUT 'testi 123' to 'note' TEXT FIELD
+browser UI: CLICK submit BUTTON
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+server->browser [{0: {content: '', date: '2022-07-31T17:54:47.249Z'}, ......}]
+
+note:
+After loading browser USER inputs 'testi 123' to input field.
+Then USER clicks Save button. After click browser executes event handler.
+Event handler sends new note to database as API-call.
+API-call returns new data.json refreshing page content.
+end note

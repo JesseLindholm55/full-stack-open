@@ -1,0 +1,15 @@
+browser->server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+server->browser [
+    spa,
+    main.css,
+    spa.js
+    }]
+browser->server HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+server->browser [{0: {content: "ttest", date: "2022-07-31T18:49:39.270Z"}, .....}]
+
+note:
+On load browser gets three files. It executes spa file and finds main.css and spa.js
+from sources in head of spa file. It executes main.css and spa.js after intializing spa file.
+Result is web page with correct styles and functionalities. Spa.js does another API-call for data.json
+,wbich is used to show notes data.
+end note

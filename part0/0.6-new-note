@@ -1,0 +1,10 @@
+browser UI: push note to notes -> redrawNotes -> send note to server
+browser->server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server->browser [{"message": "note created"}]
+
+
+note:
+After pressing submit button browser makes a new element from input fields text. It is named note.
+Then that element gets pushed to notes array. Then function reDrawNotes is called. After that
+note is sent to server. Page makes a HTTP POST api call and receives note created message if it was successful.
+end note
