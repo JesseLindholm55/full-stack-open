@@ -27,9 +27,10 @@ blogsRouter.post('/', async (request, response, next) => {
     && body.url === undefined ) response.status(400).end()
   else {
     if (body.likes === undefined) body.likes = 0
+    if (body.author === undefined) body.author = user.name
     const blog = new Blog({
       title: body.title,
-      author: user.name,
+      author: body.author,
       url: body.url,
       likes: body.likes,
       user: user._id
@@ -46,7 +47,7 @@ blogsRouter.delete('/:id', async (request, response, next) => {
 
   
   let userId = request.user._id
-  let blog = await Blog.findOne({userId})
+  let blog = await Blog.findById(request.params.id)
   if (blog.user.toString() === userId.toString()) {
 
     try {
@@ -67,13 +68,14 @@ blogsRouter.put('/:id', async (request, response, next) => {
     url: body.title,
     likes: body.likes
   }
-
   try {
     let updatedBlog = await Blog.findByIdAndUpdate(request.params.id, blog, { new: true })
     response.status(200).json(updatedBlog)
   } catch(err) {
-    response.status(404).end()
+    response.status(404).send({error: 'Blog update failed'})
   }
+  
+  
 })
 
 module.exports = blogsRouter

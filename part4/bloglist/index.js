@@ -20,7 +20,7 @@ const tokenExtractor = (request, response, next) => {
 const userExtractor = async (request, response, next) => {
   let decodedToken = null
   try {
-    decodedToken = jwt.verify(request.token, process.env.SECRET)
+    decodedToken = jwt.verify(request.token, process.env.SECRET, {expiresIn: '12h'})
   } catch (error) {
     return response.status(401).json({error: 'Token missing or invalid '})
   }
