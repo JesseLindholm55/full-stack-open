@@ -1,0 +1,9 @@
+.Message {
+    width: 400px;
+    margin: auto;
+}
+.content {
+    text-align: center;
+    border-radius: 15px;
+    background-color: gray;
+}
