@@ -47,11 +47,11 @@ blogsRouter.delete("/:id", async (request, response, next) => {
   if (blog.user.toString() === userId.toString()) {
     try {
       await Blog.findByIdAndRemove(request.params.id);
-      response.status(204).send({message: "Success"});
+      response.status(204).send({ message: "Success" });
     } catch (err) {
-      response.status(404).send({message: "Unknown error"});
+      response.status(404).send({ message: "Unknown error" });
     }
-  } else response.status(400).send({message: "Wrong id"});
+  } else response.status(400).send({ message: "Wrong id" });
 });
 
 blogsRouter.put("/:id", async (request, response, next) => {

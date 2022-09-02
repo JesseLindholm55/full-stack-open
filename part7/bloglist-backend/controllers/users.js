@@ -51,9 +51,11 @@ usersRouter.get("/", async (request, response) => {
 });
 
 usersRouter.get("/:id", async (request, response) => {
-    let user = await User.findById(request.params.id).populate('blogs', {title: 1})
-    if (user) response.status(200).json(user);
-    else response.status(404).send({message: "User id wrong."})
+  let user = await User.findById(request.params.id).populate("blogs", {
+    title: 1,
   });
+  if (user) response.status(200).json(user);
+  else response.status(404).send({ message: "User id wrong." });
+});
 
 module.exports = usersRouter;
